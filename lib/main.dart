@@ -1,5 +1,6 @@
-import 'package:bmi_app/screens/home_page.dart';
+import 'package:bmi_app/screens/home/home_page.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 void main() {
   runApp(const Bmi());
@@ -10,7 +11,7 @@ class Bmi extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       home: HomePage(),
     );

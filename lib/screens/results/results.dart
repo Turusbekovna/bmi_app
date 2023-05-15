@@ -1,21 +1,21 @@
-import 'dart:math';
-
 import 'package:bmi_app/conctans/colors/app_colors.dart';
+import 'package:bmi_app/screens/home/home_controller.dart';
+import 'package:bmi_app/screens/home/home_page.dart';
 import 'package:bmi_app/widgets/calculate.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:get/get.dart';
 
-import '../data/bmi_data.dart';
+import '../../data/bmi_data.dart';
 
-class Resalts extends StatelessWidget {
-  const Resalts({required this.height, required this.kg});
-  final double height;
-  final int kg;
-
+class Results extends StatelessWidget {
+  Results();
+  // final double height;
+  // final int kg;
+  HomeController _controller = Get.put(HomeController());
   @override
   Widget build(BuildContext context) {
-    final bmi = BmiData.bmiCalculate(height, kg);
+    final bmi = BmiData.bmiCalculate(
+        _controller.heightValue.value, _controller.weight.value);
     return Scaffold(
       backgroundColor: AppColors.mainColor,
       body: Column(
@@ -53,7 +53,9 @@ class Resalts extends StatelessWidget {
                   ),
                   Center(
                     child: Text(
-                      BmiData.bmiCalculate(height, kg).toStringAsFixed(1),
+                      BmiData.bmiCalculate(_controller.heightValue.value,
+                              _controller.weight.value)
+                          .toStringAsFixed(1),
                       style: TextStyle(
                           fontSize: 84,
                           fontWeight: FontWeight.w500,
@@ -81,7 +83,8 @@ class Resalts extends StatelessWidget {
       bottomNavigationBar: CalculateWidget(
           text: 'Re-calculate',
           onTap: () {
-            Navigator.pop(context);
+            Get.back();
+            // Navigator.pop(context);
           }),
     );
   }
